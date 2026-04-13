@@ -552,10 +552,24 @@
       transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
       cursor:none;
     }
+    .proj-card.page-enter-next {
+      animation:projectCardEnterNext .45s cubic-bezier(.22,.61,.36,1) both;
+    }
+    .proj-card.page-enter-prev {
+      animation:projectCardEnterPrev .45s cubic-bezier(.22,.61,.36,1) both;
+    }
     .proj-card:hover {
       transform:translateY(-4px);
       border-color:#e9b9be;
       box-shadow:0 16px 34px rgba(148, 64, 80, .12);
+    }
+    @keyframes projectCardEnterNext {
+      from { opacity:0; transform:translateX(28px) scale(.98); }
+      to   { opacity:1; transform:translateX(0) scale(1); }
+    }
+    @keyframes projectCardEnterPrev {
+      from { opacity:0; transform:translateX(-28px) scale(.98); }
+      to   { opacity:1; transform:translateX(0) scale(1); }
     }
     .proj-thumb {
       height:220px;
@@ -1090,8 +1104,8 @@
 
     <div class="hero-visual">
       <div class="hero-frame">
-        <img class="hero-initials" src="./Prof/Photo/Prof.PNG" alt="Keizya Wijaya portrait" />
-        <div class="hero-avatar-text">✦ designer ✦ developer ✦</div>
+        <img class="hero-initials" src="./Prof/Photo/IMG_6723.PNG" alt="Keizya Wijaya portrait" />
+        <div class="hero-avatar-text">✦ ✦ ✦ ✦ ✦</div>
         <div class="hero-badge">
           <span>✦</span>
           OPEN
@@ -1248,8 +1262,8 @@
           <div class="proj-thumb-overlay"></div>
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">Featured Design Project</h3>
-          <p class="proj-desc">Desain visual kreatif dengan konsep modern dan profesional.</p>
+          <h3 class="proj-title">Sertifikat Juara 1</h3>
+          <p class="proj-desc">Juara 1 Film Pendek</p>
         </div>
       </article>
 
@@ -1259,8 +1273,8 @@
           <div class="proj-thumb-overlay"></div>
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">Mini Portfolio Version</h3>
-          <p class="proj-desc">Website portfolio sederhana dengan tampilan clean dan modern.</p>
+          <h3 class="proj-title">Sertifikat Penghargaan</h3>
+          <p class="proj-desc">Penghargaan dalam bidang sosial</p>
           <a href="#" class="proj-link">Github</a>
         </div>
       </article>
@@ -1271,8 +1285,8 @@
           <div class="proj-thumb-overlay"></div>
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">Motion Graphics</h3>
-          <p class="proj-desc">Animasi visual dengan konsep kreatif untuk social media dan branding.</p>
+          <h3 class="proj-title">Sertifikat Koordinator</h3>
+          <p class="proj-desc">Penghargaan menjadi Koordinator</p>
         </div>
       </article>
 
@@ -1282,8 +1296,8 @@
           <div class="proj-thumb-overlay"></div>
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">Brand Identity Kit</h3>
-          <p class="proj-desc">Pengembangan identitas visual untuk bisnis lokal dengan gaya yang konsisten dan kuat.</p>
+          <h3 class="proj-title">Hari Ayah</h3>
+          <p class="proj-desc">Poster Hari Ayah untuk Sekolah</p>
         </div>
       </article>
 
@@ -1293,8 +1307,8 @@
           <div class="proj-thumb-overlay"></div>
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">Social Campaign</h3>
-          <p class="proj-desc">Konten kampanye sosial media dengan visual yang menarik dan alur pesan yang jelas.</p>
+          <h3 class="proj-title">Hari Bidan</h3>
+          <p class="proj-desc">Poster Hari Bidan untuk Sekolah</p>
         </div>
       </article>
 
@@ -1304,8 +1318,8 @@
           <div class="proj-thumb-overlay"></div>
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">Event Poster Series</h3>
-          <p class="proj-desc">Seri poster acara dengan pendekatan tipografi dan komposisi visual yang komunikatif.</p>
+          <h3 class="proj-title">Hari Film</h3>
+          <p class="proj-desc">Poster Hari Film untuk Sekolah</p>
         </div>
       </article>
 
@@ -1315,8 +1329,8 @@
           <div class="proj-thumb-overlay"></div>
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">UI Landing Concept</h3>
-          <p class="proj-desc">Konsep antarmuka landing page yang clean, responsif, dan tetap berfokus pada pengalaman pengguna.</p>
+          <h3 class="proj-title">Hari Gizi</h3>
+          <p class="proj-desc">Poster Hari Gizi untuk Sekolah</p>
         </div>
       </article>
 
@@ -1326,8 +1340,8 @@
           <div class="proj-thumb-overlay"></div>
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">Packaging Visual</h3>
-          <p class="proj-desc">Eksplorasi desain kemasan dengan fokus pada daya tarik visual dan karakter brand.</p>
+          <h3 class="proj-title">Hari Kesaktian Pancasila</h3>
+          <p class="proj-desc">Poster Hari Kesaktian Pancasila untuk sekolah</p>
         </div>
       </article>
 
@@ -1337,8 +1351,8 @@
           <div class="proj-thumb-overlay"></div>
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">Editorial Layout</h3>
-          <p class="proj-desc">Tata letak editorial untuk kebutuhan majalah sekolah dengan struktur visual yang rapi.</p>
+          <h3 class="proj-title">Hari Kesehatan</h3>
+          <p class="proj-desc">Poster Hari Kesehatan untuk sekolah</p>
         </div>
       </article>
 
@@ -1348,8 +1362,8 @@
           <div class="proj-thumb-overlay"></div>
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">Motion Reel</h3>
-          <p class="proj-desc">Kumpulan karya motion untuk kebutuhan promosi digital dan konten media sosial.</p>
+          <h3 class="proj-title">Hari Perempuan</h3>
+          <p class="proj-desc">Poster Hari Perempuan untuk sekolah</p>
         </div>
       </article>
 
@@ -1359,8 +1373,8 @@
           <div class="proj-thumb-overlay"></div>
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">Event Branding</h3>
-          <p class="proj-desc">Perancangan identitas visual acara dari materi digital hingga media cetak pendukung.</p>
+          <h3 class="proj-title">Poster Kartini Day</h3>
+          <p class="proj-desc">Poster Kartini's Day untuk sekolah</p>
         </div>
       </article>
 
@@ -1370,8 +1384,8 @@
           <div class="proj-thumb-overlay"></div>
         </div>
         <div class="proj-body">
-          <h3 class="proj-title">Content Design Pack</h3>
-          <p class="proj-desc">Template konten visual untuk Instagram dengan sistem warna dan layout yang konsisten.</p>
+          <h3 class="proj-title">Poster Merry Christmas</h3>
+          <p class="proj-desc">Poster Natal untuk sekolah</p>
         </div>
       </article>
 
@@ -1566,15 +1580,28 @@
     const totalProjectPages = Math.ceil(projectCards.length / cardsPerPage);
     let currentProjectPage = 0;
 
-    function renderProjectsPage(){
+    function renderProjectsPage(direction = ''){
       const start = currentProjectPage * cardsPerPage;
       const end = start + cardsPerPage;
+      const animClass = direction === 'next'
+        ? 'page-enter-next'
+        : direction === 'prev'
+          ? 'page-enter-prev'
+          : '';
 
       projectCards.forEach((card, index)=>{
         const visible = index >= start && index < end;
+        card.classList.remove('page-enter-next', 'page-enter-prev');
+
         card.style.display = visible ? '' : 'none';
         card.setAttribute('aria-hidden', String(!visible));
         card.setAttribute('tabindex', visible ? '0' : '-1');
+
+        if(visible && animClass){
+          // Restart CSS animation class so it replays on every page change.
+          void card.offsetWidth;
+          card.classList.add(animClass);
+        }
       });
 
       if(projectsPage){
@@ -1591,14 +1618,14 @@
       projectsPrev.addEventListener('click', ()=>{
         if(currentProjectPage > 0){
           currentProjectPage -= 1;
-          renderProjectsPage();
+          renderProjectsPage('prev');
         }
       });
 
       projectsNext.addEventListener('click', ()=>{
         if(currentProjectPage < totalProjectPages - 1){
           currentProjectPage += 1;
-          renderProjectsPage();
+          renderProjectsPage('next');
         }
       });
 
