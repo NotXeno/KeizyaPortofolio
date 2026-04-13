@@ -1386,7 +1386,7 @@
       <div class="video-grid">
         <article class="video-card reveal" data-delay="0">
           <div class="video-thumb">
-            <img src="BangunAsa.png" alt="Creative process video thumbnail" />
+            <img src="./Thumbnail/BangunAsa.png" alt="Creative process video thumbnail" />
             <button
               type="button"
               class="video-play-trigger"
@@ -1403,7 +1403,7 @@
 
         <article class="video-card reveal" data-delay="1">
           <div class="video-thumb">
-            <img src="HeningDalamHarmoni.png" alt="Motion showcase video thumbnail" />
+            <img src="./Thumbnail/HeningDalamHarmoni.png" alt="Motion showcase video thumbnail" />
             <button
               type="button"
               class="video-play-trigger"
@@ -1420,11 +1420,11 @@
 
         <article class="video-card reveal" data-delay="2">
           <div class="video-thumb">
-            <img src="Mujigae.png" alt="Portfolio reel video thumbnail" />
+            <img src="./Thumbnail/Mujigae.png" alt="Mujigae" />
             <button
               type="button"
               class="video-play-trigger"
-              data-video-url="Mujigae.mp4"
+              data-video-url="https://drive.google.com/file/d/1LlmtM5hS2wPxP8gLvmwVGGvrVabgwBDD/view?usp=drive_link"
               aria-label="Play Portfolio Reel video"
             ></button>
           </div>
@@ -1639,15 +1639,84 @@
       portfolioVideoPlayer.style.display = 'none';
     }
 
+    function getGoogleDriveFileId(urlObject){
+      const filePathMatch = urlObject.pathname.match(/\/file\/d\/([^/]+)/i);
+      if(filePathMatch && filePathMatch[1]) return filePathMatch[1];
+
+      const paramId = urlObject.searchParams.get('id');
+      if(paramId) return paramId;
+
+      return null;
+    }
+
+    function normalizeVideoSource(videoUrl){
+      const raw = String(videoUrl || '').trim();
+      if(!raw) return { src: '', isFile: false };
+
+      const isFile = /\.(mp4|webm|ogg)(\?.*)?$/i.test(raw);
+      if(isFile) return { src: raw, isFile: true };
+
+      let parsedUrl;
+      try {
+        parsedUrl = new URL(raw, window.location.href);
+      } catch {
+        return { src: raw, isFile: false };
+      }
+
+      const host = parsedUrl.hostname.replace(/^www\./i, '').toLowerCase();
+      const pathParts = parsedUrl.pathname.split('/').filter(Boolean);
+
+      if(host === 'youtu.be'){
+        const videoId = pathParts[0];
+        if(videoId){
+          return {
+            src: `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`,
+            isFile: false
+          };
+        }
+      }
+
+      if(host.endsWith('youtube.com')){
+        const watchId = parsedUrl.searchParams.get('v');
+        const shortsId = pathParts[0] === 'shorts' ? pathParts[1] : '';
+        const embedId = pathParts[0] === 'embed' ? pathParts[1] : '';
+        const videoId = watchId || shortsId || embedId;
+
+        if(videoId){
+          return {
+            src: `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`,
+            isFile: false
+          };
+        }
+      }
+
+      if(host === 'drive.google.com'){
+        const fileId = getGoogleDriveFileId(parsedUrl);
+        if(fileId){
+          return {
+            src: `https://drive.google.com/file/d/${fileId}/preview`,
+            isFile: false
+          };
+        }
+      }
+
+      if(!parsedUrl.searchParams.has('autoplay')){
+        parsedUrl.searchParams.set('autoplay', '1');
+      }
+
+      return { src: parsedUrl.toString(), isFile: false };
+    }
+
     function openVideoPopup(videoUrl){
       if(!videoLightbox || !portfolioVideoFrame || !videoUrl) return;
-      const isFileVideo = /\.(mp4|webm|ogg)(\?.*)?$/i.test(videoUrl);
+      const normalizedSource = normalizeVideoSource(videoUrl);
+      if(!normalizedSource.src) return;
 
-      if(isFileVideo && portfolioVideoPlayer){
+      if(normalizedSource.isFile && portfolioVideoPlayer){
         portfolioVideoFrame.style.display = 'none';
         portfolioVideoFrame.src = '';
         portfolioVideoPlayer.style.display = 'block';
-        portfolioVideoPlayer.src = videoUrl;
+        portfolioVideoPlayer.src = normalizedSource.src;
         portfolioVideoPlayer.currentTime = 0;
         portfolioVideoPlayer.play().catch(()=>{});
       } else {
@@ -1657,11 +1726,7 @@
           portfolioVideoPlayer.style.display = 'none';
         }
         portfolioVideoFrame.style.display = 'block';
-      const hasQuery = videoUrl.includes('?');
-      const autoplayUrl = videoUrl.includes('autoplay=1')
-        ? videoUrl
-        : `${videoUrl}${hasQuery ? '&' : '?'}autoplay=1`;
-      portfolioVideoFrame.src = autoplayUrl;
+        portfolioVideoFrame.src = normalizedSource.src;
       }
       videoLightbox.classList.add('open');
       videoLightbox.setAttribute('aria-hidden', 'false');
